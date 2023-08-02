@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
 public class PostmanEchoTest {
     @Test
     void shouldResponseToGet() {
@@ -12,9 +15,9 @@ public class PostmanEchoTest {
                 .when()
                 .post("/post")
 // Проверки
-                .then()
+                .then().log().all()
                 .statusCode(200)
-                .body("data, equalTo ("some data"));
+                .body("data", equalTo("some data"));
         ;
     }
 }
